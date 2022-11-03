@@ -11,7 +11,7 @@ public class PlanetaryBody extends Component {
     private final float mass;
     private final float diameter;
 
-    PImage image;
+    private final PImage image;
 
     private final PImage shadow;
 
