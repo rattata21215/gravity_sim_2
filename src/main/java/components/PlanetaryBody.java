@@ -7,11 +7,9 @@ import core.Window;
 import org.joml.Vector2f;
 import processing.core.PImage;
 
-import static core.Window.getWindow;
-
 public class PlanetaryBody extends Component {
     private final float mass;
-    private final float radius;
+    private final float diameter;
 
     PImage image;
 
@@ -44,10 +42,10 @@ public class PlanetaryBody extends Component {
         window.translate(position().x, position().y);
         window.rotateZ(rotation);
         window.fill(255);
-        window.image(image, 0, 0, radius() * 0.98f, radius() * 0.98f);
+        window.image(image, 0, 0, diameter() * 0.98f, diameter() * 0.98f);
         window.popMatrix();
 
-        window.image(shadow, position().x, position().y, radius(), radius());
+        window.image(shadow, position().x, position().y, diameter(), diameter());
 
         window.strokeWeight(4);
         window.stroke(255, 0, 0);
@@ -61,9 +59,9 @@ public class PlanetaryBody extends Component {
         window.line(position().x, position().y, position().x + velocity().x, position().y + velocity().y);
         window.stroke(0, 0);
 
-        if(new Vector2f(window.mouseX - window.camera.x, window.mouseY - window.camera.y).distance(position()) <= radius() / 2f) {
+        if(new Vector2f(window.mouseX - window.camera.x, window.mouseY - window.camera.y).distance(position()) <= diameter() / 2f) {
             window.fill(255, 0, 0, 25);
-            window.ellipse(position().x, position().y, radius(), radius());
+            window.ellipse(position().x, position().y, diameter(), diameter());
 
             window.fill(255);
             window.rect(position().x + 147.5f, position().y - 2.5f, 155, 85);
@@ -82,9 +80,9 @@ public class PlanetaryBody extends Component {
         }
     }
 
-    public PlanetaryBody(float mass, float radius, Vector2f position, PImage image, float rotationSpeed) {
+    public PlanetaryBody(float mass, float diameter, Vector2f position, PImage image, float rotationSpeed) {
         this.mass = mass;
-        this.radius = radius;
+        this.diameter = diameter;
 
         this.image = image;
         this.rotationSpeed = rotationSpeed;
@@ -98,8 +96,8 @@ public class PlanetaryBody extends Component {
     public float mass() {
         return this.mass;
     }
-    public float radius() {
-        return this.radius;
+    public float diameter() {
+        return this.diameter;
     }
 
     public Vector2f position() {
